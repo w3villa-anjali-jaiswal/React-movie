@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Rating from '../circleRating/Rating';
+import "../Header/style.css"
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -32,8 +33,7 @@ const MovieList = () => {
 
   return (
     <div className="container">
-      <h1>Movie List</h1>
-      <div className="row">
+      <div className="row d-flex justify-content-around mt-4">
         {movies.map(movie => (
           <div key={movie.imdbID} className="col-md-4 mb-4">
             <div className="card">
@@ -41,13 +41,15 @@ const MovieList = () => {
               <div className="card-body">
                 <h5 className="card-title">{movie.Title}</h5>
                 <p className="card-text">{movie.Year}</p>
-                 <h2> <span>rating</span> <Rating rating={generateRandomRating()} /></h2>  
+                 <h2>  <Rating rating={generateRandomRating()} /></h2>  
               </div>
             </div>
           </div>
         ))}
       </div>
     </div>
+
+    
   );
 };
 
