@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { loginUser } from '../Service/AuthUser';
 import { useNavigate } from 'react-router-dom';
+import "./log.css";
+
 
 function Login() {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ function Login() {
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    localStorage.setItem('email', event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -21,7 +24,7 @@ function Login() {
     try {
       const userData = await loginUser(email, password);
       localStorage.setItem('user', JSON.stringify(userData));
-         localStorage.setItem('token', userData.token);
+      localStorage.setItem('token', userData.token);
       console.log("Login successful:", userData);
       navigate('/home');
     } catch (error) {
@@ -30,12 +33,12 @@ function Login() {
   };
 
   return (
-    <div className='container pt-4'>
-      <form onSubmit={handleSubmit}>
-        <h3>Sign In</h3>
+    <div className='app blur' >
+      <form className='login-form' onSubmit={handleSubmit}>
+        <h3 className='text-center'>Sign In</h3>
 
-        <div className="mb-3">
-          <label>Email address</label>
+        <div className="mb-3 input-container">
+          <label className='title'>Email address</label>
           <input
             type="email"
             className="form-control"
@@ -45,8 +48,8 @@ function Login() {
           />
         </div>
 
-        <div className="mb-3">
-          <label>Password</label>
+        <div className="mb-3 input-container">
+          <label className='title'>Password</label>
           <input
             type="password"
             className="form-control"
@@ -56,7 +59,7 @@ function Login() {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 ">
           <div className="custom-control custom-checkbox">
             <input
               type="checkbox"
@@ -69,12 +72,12 @@ function Login() {
           </div>
         </div>
 
-        <div className="d-grid">
+        <div className="d-grid button-container">
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
-        <p className="forgot-password text-right">
+        <p className="forgot-password mt-4  text-right">
           Not an account <a href="/signup">sign Up?</a>
         </p>
         <p className="forgot-password text-right">
@@ -82,6 +85,8 @@ function Login() {
         </p>
       </form>
     </div>
+
+
   );
 }
 
