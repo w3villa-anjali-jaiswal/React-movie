@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { signupUser } from '../Service/AuthUser';
 import { useNavigate } from 'react-router-dom';
+import "./log.css";
+
 
 function SignUp() {
   const navigate =useNavigate();
@@ -29,11 +31,10 @@ function SignUp() {
     event.preventDefault();
 
     try {
-      const userData = await signupUser(email, password);
-      // Handle successful signup, e.g., redirect to the login page
+      const userData = await signupUser(firstName,lastName,email, password);
       localStorage.setItem('user', JSON.stringify(userData));
        localStorage.setItem('token', userData.token);
-    localStorage.setItem('email', userData.email);
+       localStorage.setItem('email', userData.email);
       navigate('/home');
       console.log("Signup successful:", userData);
     } catch (error) {
@@ -43,15 +44,15 @@ function SignUp() {
   };
 
   return (
-    <div className='container pt-4'>
-      <form onSubmit={handleSubmit}>
-        <h3>Sign Up</h3>
+    <div className='app blur'>
+      <form  className='form login-form' onSubmit={handleSubmit}>
+        <h3 className='text-center'>Sign Up</h3>
 
         <div className="mb-3">
-          <label>First name</label>
+          <label className='title'>First name</label>
           <input
             type="text"
-            className="form-control"
+            className=" input-container"
             placeholder="First name"
             value={firstName}
             onChange={handleFirstNameChange}
@@ -59,10 +60,10 @@ function SignUp() {
         </div>
 
         <div className="mb-3">
-          <label>Last name</label>
+          <label className='title'>Last name</label>
           <input
             type="text"
-            className="form-control"
+            className=" input-container"
             placeholder="Last name"
             value={lastName}
             onChange={handleLastNameChange}
@@ -70,10 +71,10 @@ function SignUp() {
         </div>
 
         <div className="mb-3">
-          <label>Email address</label>
+          <label className='title'>Email address</label>
           <input
             type="email"
-            className="form-control"
+            className=" input-container"
             placeholder="Enter email"
             value={email}
             onChange={handleEmailChange}
@@ -81,10 +82,10 @@ function SignUp() {
         </div>
 
         <div className="mb-3">
-          <label>Password</label>
+          <label className='title'>Password</label>
           <input
             type="password"
-            className="form-control"
+            className=" input-container"
             placeholder="Enter password"
             value={password}
             onChange={handlePasswordChange}
@@ -92,7 +93,7 @@ function SignUp() {
         </div>
 
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="button-85">
             Sign Up
           </button>
         </div>

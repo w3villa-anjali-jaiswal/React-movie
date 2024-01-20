@@ -3,6 +3,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
 import { useNavigate, useLocation } from "react-router-dom";
+import logo from "../../Assets/Moviex-images/movix-logo.png"
 
 import "./style.scss";
 
@@ -16,7 +17,9 @@ const Header = ({ onsearch }) => {
     const [showSearch, setShowSearch] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
+    const storedEmail = localStorage.getItem('email');
 
+    const token = localStorage.getItem('token');
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location]);
@@ -52,8 +55,8 @@ const Header = ({ onsearch }) => {
             }, 1000);
         }
 
-       
-      };
+
+    };
 
     const openSearch = () => {
         setMobileMenu(false);
@@ -69,7 +72,8 @@ const Header = ({ onsearch }) => {
         if (type === "movie") {
             navigate("/home");
         } else {
-            navigate("/signup");
+            localStorage.clear();
+            navigate("/login");
         }
         setMobileMenu(false);
     };
@@ -77,21 +81,21 @@ const Header = ({ onsearch }) => {
     return (
         <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
             <ContentWrapper>
-                <div className="logo" onClick={() => navigate("/")}>
-                    <h1>moviex</h1>
+                <div className="logo" onClick={() => navigate("/home")}>
+                    <img src={logo} alt="movie-logo" />
                 </div>
                 <ul className="menuItems">
                     <li
                         className="menuItem"
                         onClick={() => navigationHandler("movie")}
                     >
-                        Movies
+                        {storedEmail}
                     </li>
                     <li
                         className="menuItem"
                         onClick={() => navigationHandler("tv")}
                     >
-                        TV Shows
+                        Log Out
                     </li>
                     <li className="menuItem">
                         <HiOutlineSearch onClick={openSearch} />

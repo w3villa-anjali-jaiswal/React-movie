@@ -7,9 +7,8 @@ function Protected({ component: Component }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userEmail = localStorage.getItem('email');
-    console.log("Token:", token);
-    console.log("User Email:", userEmail);
-    const check = Boolean(token) || Boolean(userEmail);
+   
+    const check = Boolean(token);
 
     if (!check) {
       navigate('/login'); 
