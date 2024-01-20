@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
@@ -8,13 +9,13 @@ const MovieDetails = () => {
   useEffect(() => {
     const getMovie = async () => {
       try {
-        const result = await fetch(`https://www.omdbapi.com/?apikey=3c3865de&i=${params.id}`);
-        const data = await result.json();
-        setMovie(data);
+        const response = await axios.get(`https://www.omdbapi.com/?apikey=3c3865de&i=${params.id}`);
+        setMovie(response.data);
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
     };
+
     getMovie();
   }, [params.id]);
 
