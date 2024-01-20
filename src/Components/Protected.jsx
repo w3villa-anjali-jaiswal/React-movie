@@ -11,7 +11,7 @@ function Protected({ component: Component }) {
     const check = Boolean(token);
 
     if (!check) {
-      navigate('/login'); 
+      navigate('/'); 
     }
   }, [navigate]); 
 
