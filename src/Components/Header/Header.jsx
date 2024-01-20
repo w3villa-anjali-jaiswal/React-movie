@@ -73,7 +73,7 @@ const Header = ({ onsearch }) => {
             navigate("/home");
         } else {
             localStorage.clear();
-            navigate("/login");
+            navigate("/");
         }
         setMobileMenu(false);
     };

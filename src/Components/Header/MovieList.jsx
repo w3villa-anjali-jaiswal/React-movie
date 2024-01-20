@@ -7,6 +7,7 @@ import { movieapi } from '../../Movieapi';
 import Header from './Header';
 import Paginate from '../Paginate';
 import Footer from '../Footer/Footer';
+import LazyImage from '../LazyLoading/Img';
 
 const MovieList = () => {
   const [query, setQuery] = useState('movie');
@@ -45,7 +46,7 @@ const MovieList = () => {
             <div key={movie.imdbID} className="col-md-4 mb-4">
                <Link to={`/movie/${movie.imdbID}`} className="card-link">
               <div className="card">
-                <img src={movie.Poster} className="card-img-top" alt={`${movie.Title} Poster`} />
+                <LazyImage src={movie.Poster} className="card-img-top" alt={`${movie.Title} Poster`} />
                 <div className="card-body">
                   <h5 className="card-title">{movie.Title}</h5>
                   <p className="card-text">{movie.Year}</p>
