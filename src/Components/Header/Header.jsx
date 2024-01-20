@@ -8,7 +8,7 @@ import "./style.scss";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 
-const Header = () => {
+const Header = ({ onsearch }) => {
     const [show, setShow] = useState("top");
     const [lastScrollY, setLastScrollY] = useState(0);
     const [mobileMenu, setMobileMenu] = useState(false);
@@ -42,13 +42,18 @@ const Header = () => {
     }, [lastScrollY]);
 
     const searchQueryHandler = (event) => {
-        if (event.key === "Enter" && query.length > 0) {
-            navigate(`/search/${query}`);
+        const inputQuery = event.target.value;
+
+        if (event.key === "Enter" && inputQuery.trim().length >= 3) {
             setTimeout(() => {
+                console.log("Input Query:", inputQuery);
+                onsearch(query);
                 setShowSearch(false);
             }, 1000);
         }
-    };
+
+       
+      };
 
     const openSearch = () => {
         setMobileMenu(false);
@@ -62,9 +67,9 @@ const Header = () => {
 
     const navigationHandler = (type) => {
         if (type === "movie") {
-            navigate("/explore/movie");
+            navigate("/home");
         } else {
-            navigate("/explore/tv");
+            navigate("/signup");
         }
         setMobileMenu(false);
     };
