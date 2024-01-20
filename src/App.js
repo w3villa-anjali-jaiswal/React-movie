@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/home" element={<Protected component={MovieList} />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/movie/:id" element={<Protected component={MovieDetails}/>} />
         </Routes>
