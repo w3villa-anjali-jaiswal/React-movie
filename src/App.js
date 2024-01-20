@@ -6,14 +6,12 @@ import Navbar from './Components/Header/Navbar';
 import Protected from './Components/Protected';
 import MovieList from './Components/Header/MovieList';
 import Footer from './Components/Footer/Footer';
-import Header from './Components/Header/Header';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar />
-        <Header />
         <Routes>
           <Route path="/home" element={<Protected component={MovieList} />} />
           <Route path="/login" element={<Login />} />
