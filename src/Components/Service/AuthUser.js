@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURL = "https://reqres.in/api";
-const http = axios.create({
+const https= axios.create({
   baseURL,
   headers: {
     "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const handleError = (error, customErrorMessage) => {
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await http.post('/login', { email, password });
+    const response = await https.post('/login', { email, password });
     console.log("Login successful:", response.data);
     return response.data;
   } catch (error) {
@@ -34,7 +34,7 @@ export const loginUser = async (email, password) => {
 
 export const signupUser = async (email, password) => {
   try {
-    const response = await http.post('/users', { email, password });
+    const response = await https.post('/users', { email, password });
     console.log("Signup successful:", response.data);
     return response.data;
   } catch (error) {
